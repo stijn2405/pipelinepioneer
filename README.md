@@ -1,4 +1,4 @@
-# pipelinepioneer
+# CI/CD Pipeline voor webserver cluster implementatie
 
 
 ## kubemanifests
