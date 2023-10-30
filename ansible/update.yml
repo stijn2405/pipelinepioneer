@@ -1,0 +1,23 @@
+---
+- name: Update en upgrade Debian clients
+  hosts: all
+  become: yes  # Schakel over naar de rootgebruiker om pakketten bij te werken
+
+  tasks:
+    - name: Update de pakketlijst
+      apt:
+        update_cache: yes
+
+    - name: Upgrade alle geïnstalleerde pakketten
+      apt:
+        upgrade: safe
+        update_cache: yes
+
+    - name: Verwijder niet langer nodige pakketten
+      apt:
+        autoremove: yes
+
+    - name: Verwijder overgebleven pakketinformatie
+      apt:
+        autoclean: yes
+

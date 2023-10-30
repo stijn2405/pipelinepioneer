@@ -1,0 +1,12 @@
+[control]
+kub-node01 ansible_connection=local
+
+[workers]
+cube@192.168.0.11 var_hostname=kub-node01
+cube@192.168.0.12 var_hostname=kub-node02
+cube@192.168.0.13 var_hostname=kub-node03
+cube@192.168.0.14 var_hostname=kub-node04
+
+[cube:children]
+control
+workers
