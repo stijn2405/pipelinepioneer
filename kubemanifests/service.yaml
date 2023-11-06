@@ -4,11 +4,11 @@ metadata:
   name: nginx
 spec:
   selector:
-    app: nginx
+    app: ppioneer
   type: LoadBalancer
   ports:
     - name: nginx
       protocol: TCP
       port: 80
       targetPort: 80
-  loadBalancerIP: 10.0.1.209
+  loadBalancerIP: 10.0.0.80

@@ -2,29 +2,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: ppioneer
 spec:
   selector:
     matchLabels:
-      app: nginx
+      app: ppioneer
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: nginx
+        app: ppioneer
     spec:
       containers:
-      - image: mickgroot/nginx:latest
+      - image: nginxdemos/hello
         imagePullPolicy: Always
-        name: nginx
+        name: ppioneer
         resources:
-          requests:
-            cpu: 50m
           limits:
             cpu: 100m
         ports:
         - containerPort: 80
           protocol: TCP
-          name: nginx
+          name: ppioneer
 
