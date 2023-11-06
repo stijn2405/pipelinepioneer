@@ -15,7 +15,7 @@ spec:
         app: ppioneer
     spec:
       containers:
-      - image: mickgroot/nginx:latest
+      - image: nginxdemos/hello
         imagePullPolicy: Always
         name: ppioneer
         resources:
