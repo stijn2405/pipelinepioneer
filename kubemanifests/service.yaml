@@ -4,7 +4,7 @@ metadata:
   name: nginx
 spec:
   selector:
-    app: nginx
+    app: ppioneer
   type: LoadBalancer
   ports:
     - name: nginx
