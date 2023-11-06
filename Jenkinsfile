@@ -2,16 +2,15 @@ pipeline {
     agent any
 
     environment {
-        // Define environment variables, such as image name and tag
-        DOCKER_IMAGE_NAME = ''
-        DOCKER_IMAGE_TAG = ''
+        // Define environment variables, image name and tag
+        DOCKER_IMAGE_NAME = 'knakkergithub/proftaakdocker'
+        DOCKER_IMAGE_TAG = 'latest'
     }
 
     stages {
         stage('Checkout') {
             steps {
-                // Checkout your source code repository (if applicable)
-                // For example, if you're building from source code
+                // Checkout source code repository (only if source code)
                 checkout scm
             }
         }
