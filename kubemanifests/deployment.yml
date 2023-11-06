@@ -19,8 +19,6 @@ spec:
         imagePullPolicy: Always
         name: nginx
         resources:
-          requests:
-            cpu: 50m
           limits:
             cpu: 100m
         ports:
