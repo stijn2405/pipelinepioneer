@@ -7,7 +7,7 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: ppioneers
+    name: ppioneer
   minReplicas: 1
   maxReplicas: 10
   metrics:
