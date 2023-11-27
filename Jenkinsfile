@@ -1,43 +1,40 @@
 pipeline {
-    agent any
-
-    environment {
-        // Define environment variables, image name and tag
-        DOCKER_IMAGE_NAME = 'knakkergithub/proftaakdocker'
-        DOCKER_IMAGE_TAG = 'latest'
+  environment {
+    imagename = "knakkergithub/proftaakdocker"
+    registryCredential = 'da38a0fc-248c-44b9-825d-88f3f012151a'
+    dockerImage = ''
+  }
+  agent any
+  stages {
+    stage('Cloning Git') {
+      steps {
+        git([url: 'https://github.com/', branch: 'main', credentialsId: '9e195a33-40db-452c-83ec-ce3fec020047'])
+ 
+      }
     }
-
-    stages {
-        stage('Checkout') {
-            steps {
-                // Checkout source code repository (only if source code)
-                checkout scm
-            }
+    stage('Building image') {
+      steps{
+        script {
+          dockerImage = docker.build imagename
         }
-
-        stage('Pull Docker Image') {
-            steps {
-                // Pull the Docker image from Docker Hub
-                script {
-                    docker.image("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}").pull()
-                }
-            }
-        }
-
-        stage('Build Docker Image') {
-            steps {
-                // Build a new Docker image based on the pulled image
-                script {
-                    def dockerImage = docker.build("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}", ".")
-                    dockerImage.push()
-                }
-            }
-        }
+      }
     }
-
-    post {
-        success {
-            echo "Docker image build and push successful"
+    stage('Deploy Image') {
+      steps{
+        script {
+          docker.withRegistry( '', registryCredential ) {
+            dockerImage.push("$BUILD_NUMBER")
+             dockerImage.push('latest')
+          }
         }
+      }
     }
+    stage('Remove Unused docker image') {
+      steps{
+        sh "docker rmi $imagename:$BUILD_NUMBER"
+         sh "docker rmi $imagename:latest"
+ 
+      }
+    }
+  }
 }
