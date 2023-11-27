@@ -15,7 +15,7 @@ spec:
         app: ppioneer
     spec:
       containers:
-      - image: knakkergithub/proftaakdocker:latest
+      - image: knakkergithub/proftaakdocker
         imagePullPolicy: Always
         name: ppioneer
         resources:
