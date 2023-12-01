@@ -3,6 +3,7 @@ pipeline {
     registry = "knakkergithub/proftaakdocker"
     registryCredential = 'ce4d704c-1c87-4c84-b56e-f58dd0ac0737'
     dockerImage = ''
+    imageTag = "latest"
   }
   agent any
   stages {
@@ -15,15 +16,15 @@ pipeline {
       steps{
         script {
           //sh "docker build -t knakkergithub/proftaakdocker /home/ladmin/pipelinepioneer/kubecode"
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+          docker.build("knakkergithub/proftaakdocker + :$BUILD_NUMBER")
         }
       }
     }
     stage('Push to DockerHub Registry') {
       steps{
         script {
-          docker.withRegistry( '', registryCredential ) {
-            dockerImage.push()
+          docker.withRegistry('https://registry.hub.docker.com', registryCredential) {
+            docker.image("knakkergithub/proftaakdocker:${imageTag}").push()
           }
         }
       }
