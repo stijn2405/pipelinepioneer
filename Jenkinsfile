@@ -1,7 +1,7 @@
 pipeline {
   environment {
     imagename = "knakkergithub/proftaakdocker"
-    registryCredential = 'da38a0fc-248c-44b9-825d-88f3f012151a'
+    registryCredential = 'ce4d704c-1c87-4c84-b56e-f58dd0ac0737'
     dockerImage = ''
   }
   agent any
@@ -22,7 +22,7 @@ pipeline {
     stage('Push to DockerHub Registry') {
       steps{
         script {
-          docker.withRegistry( '', registryCredential ) {
+          docker.withRegistry( 'knakkergithub/proftaakdocker', registryCredential ) {
             dockerImage.push("$BUILD_NUMBER")
              dockerImage.push('latest')
           }
