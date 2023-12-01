@@ -15,7 +15,7 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          sh "docker build -t pipelinepioneer/kubecode"
+          sh "docker build -t pipelinepioneer"
         }
       }
     }
