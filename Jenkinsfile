@@ -1,6 +1,7 @@
 pipeline {
   environment {
     imagename = "knakkergithub/proftaakdocker"
+    registry = "knakkergithub/proftaakdocker"
     registryCredential = 'ce4d704c-1c87-4c84-b56e-f58dd0ac0737'
     dockerImage = ''
   }
@@ -15,14 +16,14 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          sh "docker build -t testimage:latest /home/ladmin/pipelinepioneer/kubecode"
+          sh "docker build -t knakkergithub/proftaakdocker /home/ladmin/pipelinepioneer/kubecode"
         }
       }
     }
     stage('Push to DockerHub Registry') {
       steps{
         script {
-          docker.withRegistry( 'knakkergithub/proftaakdocker', registryCredential ) {
+          docker.withRegistry( '', registryCredential ) {
             dockerImage.push("$BUILD_NUMBER")
              dockerImage.push('latest')
           }
