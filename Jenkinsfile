@@ -15,7 +15,7 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build{"stijn2405/pipelinepioneer"}
+          dockerImage = docker.build{"pipelinepioneer/kubecode"}
           dockerImage
         }
       }
