@@ -15,7 +15,7 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          sh "docker build -t testimage:latest pipelinepioneer/kubecode"
+          sh "docker build -t testimage:latest /home/ladmin/pipelinepioneer/kubecode"
         }
       }
     }
