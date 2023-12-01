@@ -14,7 +14,9 @@ pipeline {
     }
     stage('Building image') {
       steps{
+        script {
           dockerImage = docker.build{"pipelinepioneer/kubecode"}
+        }
       }
     }
     stage('Push to DockerHub Registry') {
