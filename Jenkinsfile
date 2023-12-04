@@ -15,7 +15,7 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          docker.build("knakkergithub/proftaakdocker:build$BUILD_NUMBER", "/home/ladmin/pipelinepioneer/kubecode")
+          docker.build("knakkergithub/proftaakdocker:release_$BUILD_NUMBER", "/home/ladmin/pipelinepioneer/kubecode")
         }
       }
     }
@@ -23,7 +23,7 @@ pipeline {
       steps{
         script {
           docker.withRegistry('https://registry.hub.docker.com', registryCredential) {
-            docker.image("knakkergithub/proftaakdocker:build$BUILD_NUMBER").push()
+            docker.image("knakkergithub/proftaakdocker:release$BUILD_NUMBER").push()
           }
         }
       }
