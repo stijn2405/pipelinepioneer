@@ -23,7 +23,7 @@ pipeline {
       steps{
         script {
           docker.withRegistry('https://registry.hub.docker.com', registryCredential) {
-            docker.image("knakkergithub/proftaakdocker:release$BUILD_NUMBER").push()
+            docker.image("knakkergithub/proftaakdocker:release_$BUILD_NUMBER").push()
           }
         }
       }
