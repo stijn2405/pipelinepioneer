@@ -1,6 +1,5 @@
 pipeline {
   environment {
-    registry = "knakkergithub/proftaakdocker"
     registryCredential = 'ce4d704c-1c87-4c84-b56e-f58dd0ac0737'
   }
   agent any
