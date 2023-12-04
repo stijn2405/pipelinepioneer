@@ -9,6 +9,7 @@ pipeline {
         git([url: 'https://github.com/stijn2405/pipelinepioneer', branch: 'main', credentialsId: '9e195a33-40db-452c-83ec-ce3fec020047'])
       }
     }
+    // hoi
     stage('Building image') {
       steps{
         script {
