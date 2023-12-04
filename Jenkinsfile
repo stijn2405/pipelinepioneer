@@ -15,7 +15,6 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          //sh "docker build -t knakkergithub/proftaakdocker /home/ladmin/pipelinepioneer/kubecode"
           docker.build("knakkergithub/proftaakdocker:$BUILD_NUMBER", "/home/ladmin/pipelinepioneer/kubecode")
         }
       }
